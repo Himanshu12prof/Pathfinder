@@ -17,18 +17,17 @@ export default class Node extends Component{
             onMouseUp,
             row,
         } = this.props;
-        const extraclassName=isFin  ?'node-finish': isStart? 'node-start': isWall ? 'node-wall' : '';
+        const extraclassName=isFin ?'node-finish': isStart? 'node-start': isWall ? 'node-wall' : '';
         
         
         
         return (
         <div 
         id={`node-${row}-${col}`}
-        
+        className={`node ${extraclassName}`}
         onMouseDown={() => onMouseDown(row, col)}
         onMouseEnter={() => onMouseEnter(row, col)}
-        onMouseUp={() => onMouseUp()}
-        className={`node ${extraclassName}`}></div>
+        onMouseUp={(row,col) => onMouseUp(row, col)}></div>
         );
          
      }

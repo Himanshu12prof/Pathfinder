@@ -4,8 +4,8 @@ import './PathfinderVisualizer.css'
 import {dijkstra , getNodesInShortestPathOrder} from './dijkstra';
 const start_node_r=10;
 const start_node_c=5;
-const fin_node_r=1;
-const fin_node_c=45;
+const fin_node_r=10;
+const fin_node_c=20;
 
 
 export default class PathfinderVisualizer extends Component {
@@ -21,12 +21,10 @@ export default class PathfinderVisualizer extends Component {
   componentDidMount() {
     const grid=InitializeGrid();
     this.setState({grid})
-    
-
-  }
+    }
 
   handleMouseDown(row, col){
-    const newGrid=getNewGridwithWall(this.state.grid.push,row,col)
+    const newGrid=getNewGridwithWall(this.state.grid,row,col)
     //at row col we  have the mouse key pressed
     this.setState({grid :newGrid,mouseIspressed:true});
   }
@@ -108,7 +106,7 @@ visualizeDijkstra()
            mouseIspressed={mouseIspressed}
            onMouseDown={(row,col) => this.handleMouseDown(row,col)}
            onMouseEnter={(row,col) => this.handleMouseEnter(row,col)}
-          onMousup={(row,col) => this.handleMouseup(row,col)}
+          onMousup={() => this.handleMouseup()}
            ></Node>
             );
            
