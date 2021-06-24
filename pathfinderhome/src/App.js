@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import PathfinderVisualizer from './PathfinderVisualizer'
+import Grid from './components/Grid.jsx'
 
 function App() {
     return ( < div className = "App" >
-     <PathfinderVisualizer > </PathfinderVisualizer >
+     <Grid/> 
       </div> );
 }
 
