@@ -1,10 +1,11 @@
 import React, { Fragment, useState } from "react";
 import Node from "./Node/Node";
-import PickAlgorithm from "./PickAlgorithm/PickAlgorithm";
+
 
 import { visualizeDijkstra } from "../algorithms/dijkstra";
 import { visualizeDFS } from "../algorithms/DFS";
 import { visualizeBFS } from "../algorithms/BFS";
+import { visualizeAstar } from "../algorithms/A-star";
 import Navbar from "./Layout/Navbar";
 import GridFactory from "../factory/GridFactory";
 import Constants from "../utils/constants";
@@ -29,6 +30,51 @@ const Grid = () => {
     GridFactory.getInitialGrid(startNode, finishNode)
   );
 
+  const randomNumber = (mx, mn) =>
+  {
+    return Math.floor(Math.random() * (mx - mn +1) ) + mn;
+  }
+
+   const generateRandomMaze =(startNode, finishNode) => {
+     
+    for(var i=1;i<Constants.ROWS_NUMBER;i++)
+  {
+      if(i%2==0)
+      {
+          const initial=randomNumber(Constants.COLUMNS_NUMBER-1,1);
+          const end=randomNumber(Constants.COLUMNS_NUMBER-1,initial);
+          for(var j=initial;j<=end;j++)
+          { if(i===startNode.row && j==startNode.col) continue;
+            if(i===finishNode.row && j==finishNode.col) continue;
+            const newGrid = GridFactory.getNewGridWithWallToggled(grid, i, j);
+            setGrid(newGrid);
+                    }
+      }
+
+      
+  }
+
+  for(var i=1;i<Constants.COLUMNS_NUMBER;i++)
+  {
+      if(i%2==0)
+      {
+        const initial=randomNumber(Constants.ROWS_NUMBER-1,1);
+        const end=randomNumber(Constants.ROWS_NUMBER-1,initial);
+        for(var j=initial;j<=end;j++)
+        { if(j===startNode.row && i==startNode.col) continue;
+          if(j===finishNode.row && i==finishNode.col) continue;
+          const newGrid = GridFactory.getNewGridWithWallToggled(grid, j, i);
+          setGrid(newGrid);
+         
+        }
+
+      }
+  }
+
+  };
+
+
+  
   const handleMouseDown = (row, col) => {
     setIsMousePressed(true);
     let nodeClicked = grid[row][col];
@@ -80,20 +126,28 @@ const Grid = () => {
 
   return (
     <Fragment>
-        <button onClick={() => visualizeDijkstra(grid, startNode, finishNode)}>
+        <button className="top-buttons" onClick={() => visualizeDijkstra(grid, startNode, finishNode)}>
           Visualize Dijkstra's Algorithm
         </button>
-        <button onClick={() => visualizeBFS(grid, startNode, finishNode)}>
+        <button className="top-buttons" onClick={() => visualizeBFS(grid, startNode, finishNode)}>
           Visualize BFS Algorithm
         </button>
-        <button onClick={() => visualizeDFS(grid, startNode, finishNode)}>
+        <button className="top-buttons" onClick={() => visualizeDFS(grid, startNode, finishNode)}>
           Visualize DFS Algorithm
         </button>
-        <button onClick={() => visualizeDijkstra(grid, startNode, finishNode)}>
+        <button className="top-buttons" onClick={() => visualizeAstar(grid, startNode, finishNode)}>
           Visualize A* Algorithm
         </button>
+        <button className="top-buttons" onClick={() => generateRandomMaze(startNode, finishNode)}>
+          Generate Random walls 
+        </button>
+        
+        <button className="top-buttons" onClick={() =>(setGrid(GridFactory.clearGrid(startNode, finishNode)))}>
+          Clear Grid 
+        </button>
+        
        
-        <div className="grid">
+        <div className="grid" onMouseUp={() => handleMouseUp()}>
           {grid.map((row, rowIdx) => {
             return (
               <div key={rowIdx}>

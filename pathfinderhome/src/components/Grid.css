@@ -1,7 +1,34 @@
 .grid {
     
-  padding-top:100px;
+  padding-top:40px;
   position: absolute;
   margin: 10px 0;
 
   }
+  .grid div{
+    margin-bottom: -1px;
+  }
+
+  .top-buttons{
+  letter-spacing: 1px; 
+  height:25px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top:40px;
+  padding: auto;
+  
+color :rgb(253, 253, 253);
+
+font-weight:500;
+border:none;
+border-radius:100px 100px 100px 100px;
+cursor:pointer;
+transition:all 240ms ease-in-out;
+background: linear-gradient(90deg, rgb(169, 111, 192) 0%, rgb(156, 19, 235) 100%);
+
+  }
+  
+  .top-buttons:hover{
+    filter:brightness(1.03);
+    transform: scale(1.1);
+ }

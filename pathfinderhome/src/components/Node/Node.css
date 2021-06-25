@@ -1,21 +1,31 @@
 .node{
-    width: 20px;;
-    height: 20px;
-     margin:3px;
-    border: 2px solid rgb(36, 243, 160);
-    border-radius: 20px;
+    width: 15px;;
+    height: 15px;
+     margin:1px;
+    border: 2px solid rgba(74, 206, 206, 0.87);
+    
     display: inline-block;
     transition:all 0.1s;
 }
 .node-finish{
-  background-color:rgb(25, 0, 255);
+  
+  background-image: url(../../utils/finish.jfif);
   transform: scale(1.5);
+ 
+  background-size: cover;
+  
+  background-repeat: no-repeat;
   border: 2px solid rgb(36, 243, 160);
 }
 
 .node-start{
-  background-color:rgb(255, 81, 0);
+  /* background-color:rgb(255, 81, 0); */
+  background-image: url(../../utils/right-arrow.png);
   transform: scale(1.5);
+ 
+  background-size: cover;
+  
+  background-repeat: no-repeat;
   border: 2px solid rgb(36, 243, 160);
 }
 .node-visited {
@@ -87,11 +97,17 @@
   animation-duration: 1.5s;
   animation-timing-function: ease-out;
   animation-delay: 0;
-  border-radius:0px;
+  border-radius:100%;
   animation-direction: alternate;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   animation-play-state: running;
+  background-image: url(../../utils/right-arrow.png);
+  transform: scale(1.5);
+ 
+  background-size: cover;
+  
+  background-repeat: no-repeat;
 }
 
 @keyframes shortestPath {

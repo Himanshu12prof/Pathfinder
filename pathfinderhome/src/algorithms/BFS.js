@@ -17,7 +17,7 @@ export function visualizeBFS(grid, startNode, finishNode) {
   Animation.animateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder);
 }
 
-export function getNodesInShortestPathOrder(finishNode) {
+ function getNodesInShortestPathOrder(finishNode) {
   const nodesInShortestPathOrder = [];
   let currentNode = finishNode;
   while (currentNode !== null) {
@@ -27,7 +27,7 @@ export function getNodesInShortestPathOrder(finishNode) {
   return nodesInShortestPathOrder;
 }
 
-export function BFS(grid, startNode, finishNode) {
+ function BFS(grid, startNode, finishNode) {
    const queue=new Queue();
    const visitedNodesInOrder = [];
    queue.push(startNode);
